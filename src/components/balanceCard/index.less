@@ -1,0 +1,87 @@
+/* BalanceCard.less */
+
+.balance-card {
+  background-color: #f5f7fa;
+  padding: 16px;
+  margin: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+
+  .balance-header {
+    justify-content: space-between;
+    width: 100%;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+
+    .balance-title {
+      padding: 10px;
+    }
+
+    .balance-amout {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .balance-percentage {
+      font-size: 14px;
+      color: #3b82f6;
+    }
+  }
+
+  .balance-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 12px;
+
+    .detail-item {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #333;
+
+      &.expense {
+        .icon {
+          color: #34c759;
+        }
+        .amount {
+          color: #333;
+        }
+      }
+
+      &.income {
+        .icon {
+          color: #ff3b30;
+        }
+        .amount {
+          color: #333;
+        }
+      }
+
+      .icon {
+        font-size: 24px;
+        padding: 8px;
+        border-radius: 50%;
+        background-color: #f0f0f0;
+      }
+
+      .label {
+        margin-top: 4px;
+      }
+
+      .amount {
+        font-weight: bold;
+        margin-top: 4px;
+      }
+    }
+  }
+}
