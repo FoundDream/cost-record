@@ -6,16 +6,17 @@ import { IoPieChartOutline, IoPieChartSharp } from "react-icons/io5";
 import { RiUser4Fill, RiUser4Line } from "react-icons/ri";
 import { useEffect, useState } from "react";
 
-function Root() {
+const Root = () => {
   const navigate = useNavigate();
   const [activeKey, setActiveKey] = useState("home");
-
   const location = useLocation();
 
+  // 解决刷新页面后activeKey不准确的问题
   useEffect(() => {
     setActiveKey(location.pathname.slice(1));
   }, [location]);
 
+  // Tabbar 渲染数据
   const tabs = [
     {
       key: "home",
@@ -47,11 +48,11 @@ function Root() {
           ))}
         </TabBar>
       </div>
-      <div id="detail">
+      <div className="detail">
         <Outlet />
       </div>
     </>
   );
-}
+};
 
 export default Root;
