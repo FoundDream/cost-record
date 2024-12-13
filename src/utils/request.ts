@@ -2,7 +2,7 @@ import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 // 创建 axios 实例
 const axiosInstance = axios.create({
-  baseURL: "http://api.chennick.wang/api", // 替换为实际的基础 URL
+  baseURL: "http://localhost:3000", // 替换为实际的基础 URL
   timeout: 10000, // 设置超时时间
   headers: {
     "Content-Type": "application/json",
