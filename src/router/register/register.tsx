@@ -4,6 +4,22 @@ import { postRequest } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  interface LoginResponse {
+    user: {
+      username: string;
+      email: string;
+    };
+    token: string;
+  }
+
+  interface RegisterResponse {
+    user: {
+      username: string;
+      email: string;
+      id: number;
+    };
+  }
+
   // 注册状态
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -17,30 +33,40 @@ export default function Register() {
   // 注册提交处理
   const handleRegisterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const data = await postRequest("/api/v1/user/register", {
-      username,
-      email,
-      password,
-    });
+    const { data } = await postRequest<RegisterResponse>(
+      "/api/v1/user/register",
+      {
+        username,
+        email,
+        password,
+      }
+    );
     setActiveTab("login");
     setUsername("");
     setEmail("");
     setPassword("");
     console.log(data, "注册成功");
+    const bill = await postRequest("/api/v1/bills", {
+      name: "测试记账本",
+      description: "测试",
+      icon: "",
+      userId: data.user.id,
+    });
+    console.log(bill, "bill");
   };
 
   // 登录提交处理
   const handleLoginSubmit = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
-      const data = await postRequest("/api/v1/user/login", {
+      const { data } = await postRequest<LoginResponse>("/api/v1/user/login", {
         username: loginUsername,
         password: loginPassword,
       });
-      console.log(data, "登录成功");
       setLoginUsername("");
       setLoginPassword("");
       navigate("/");
+      localStorage.setItem("token", data.token);
     } catch (error) {
       console.log(error);
     }
