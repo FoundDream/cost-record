@@ -1,39 +1,58 @@
-import { FC } from "react";
+import React from "react";
+import { Bell, ChevronDown, ArrowDown, ArrowUp } from "lucide-react";
 import "./index.less";
 
-interface BalanceCardProps {
-  balance: number;
-  expense: number;
-  income: number;
+interface FinanceDashboardProps {
+  month?: string;
+  balance?: number;
+  income?: number;
+  expenses?: number;
+  avatarUrl?: string;
 }
 
-const BalanceCard: FC<BalanceCardProps> = ({ balance, expense, income }) => {
-  const expensePercentage = ((expense / income) * 100).toFixed(0);
-
+const BalanceCard: React.FC<FinanceDashboardProps> = ({
+  month = "October",
+  balance = 9400,
+  income = 5000,
+  expenses = 1200,
+  avatarUrl = "https://gravatar.com/avatar/f656fc2a60e61ee1c1af65b89731ac9d?s=200&d=robohash&r=x",
+}) => {
   return (
-    <div className="balance-card">
-      <div className="balance-header">
-        <div className="balance-title">收支盈余</div>
-        <div className="balance-amout">
-          <div>¥{balance.toFixed(2)}</div>
-          <div className="balance-percentage">
-            你花费了 {expensePercentage}% 的收入
+    <div className="finance-dashboard">
+      <div className="header">
+        <div className="user-section">
+          <img src={avatarUrl} alt="User avatar" className="avatar" />
+          <div className="month-selector">
+            <ChevronDown size={20} />
+            <span>{month}</span>
           </div>
         </div>
+        <Bell className="notification-icon" size={24} />
       </div>
-      <div className="balance-details">
-        <div className="detail-item expense">
-          <div className="icon">⬇️</div>
-          <div>
-            <div className="label">支出</div>
-            <div className="amount">¥{expense.toFixed(2)}</div>
+
+      <div className="balance-section">
+        <span className="balance-label">Account Balance</span>
+        <h1 className="balance-amount">${balance}</h1>
+      </div>
+
+      <div className="stats-container">
+        <div className="stat-card income">
+          <div className="stat-icon">
+            <ArrowDown size={20} />
+          </div>
+          <div className="stat-info">
+            <span className="stat-label">Income</span>
+            <span className="stat-amount">${income}</span>
           </div>
         </div>
-        <div className="detail-item income">
-          <div className="icon">⬆️</div>
-          <div>
-            <div className="label">收入</div>
-            <div className="amount">¥{income.toFixed(2)}</div>
+
+        <div className="stat-card expenses">
+          <div className="stat-icon">
+            <ArrowUp size={20} />
+          </div>
+          <div className="stat-info">
+            <span className="stat-label">Expenses</span>
+            <span className="stat-amount">${expenses}</span>
           </div>
         </div>
       </div>

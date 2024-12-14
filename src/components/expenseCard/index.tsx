@@ -1,31 +1,107 @@
 import React from "react";
+import { ShoppingBag, FileText, Utensils } from "lucide-react";
 import "./index.less";
 
-interface ExpenseCardProps {
-  date: string;
+interface Transaction {
+  id: number;
+  type: "Shopping" | "Subscription" | "Food";
+  description: string;
   amount: number;
-  category: string;
-  icon: React.ReactNode;
+  time: string;
 }
 
-const ExpenseCard: React.FC<ExpenseCardProps> = ({
-  date,
-  amount,
-  category,
-  icon,
-}) => {
+const transactions: Transaction[] = [
+  {
+    id: 1,
+    type: "Shopping",
+    description: "Buy some grocery",
+    amount: -120,
+    time: "10:00 AM",
+  },
+  {
+    id: 2,
+    type: "Subscription",
+    description: "Disney+ Annual..",
+    amount: -80,
+    time: "03:30 PM",
+  },
+  {
+    id: 3,
+    type: "Food",
+    description: "Buy a ramen",
+    amount: -32,
+    time: "07:30 PM",
+  },
+  {
+    id: 4,
+    type: "Food",
+    description: "Buy a ramen",
+    amount: -32,
+    time: "07:30 PM",
+  },
+  {
+    id: 5,
+    type: "Food",
+    description: "Buy a ramen",
+    amount: -32,
+    time: "07:30 PM",
+  },
+];
+
+const getIcon = (type: Transaction["type"]) => {
+  switch (type) {
+    case "Shopping":
+      return <ShoppingBag size={20} />;
+    case "Subscription":
+      return <FileText size={20} />;
+    case "Food":
+      return <Utensils size={20} />;
+  }
+};
+
+const getIconBackground = (type: Transaction["type"]) => {
+  switch (type) {
+    case "Shopping":
+      return "bg-orange";
+    case "Subscription":
+      return "bg-purple";
+    case "Food":
+      return "bg-pink";
+  }
+};
+
+const ExpenseCard: React.FC = () => {
   return (
-    <div className="expense-card">
-      <div className="expense-header">
-        <span className="expense-date">今天 {date}</span>
-        <span className="expense-amount">支 ¥{amount.toFixed(2)}</span>
+    <div className="recent-transactions">
+      <div className="header">
+        <h3>Recent Transaction</h3> <button className="see-all">See All</button>
       </div>
-      <div className="expense-details">
-        <div className="expense-item">
-          <div className="icon">{icon}</div>
-          <div className="label">{category}</div>
-        </div>
-        <div className="amount">-¥{amount.toFixed(2)}</div>
+      <div className="transactions-list">
+        {transactions.map((transaction) => (
+          <div key={transaction.id} className="transaction-item">
+            <div
+              className={`icon-container ${getIconBackground(
+                transaction.type
+              )}`}
+            >
+              {getIcon(transaction.type)}
+            </div>
+            <div className="transaction-info">
+              <div className="transaction-main">
+                <span className="transaction-type">{transaction.type}</span>
+                <span className="transaction-amount">
+                  ${transaction.amount}
+                </span>
+              </div>
+              <div className="transaction-details">
+                <span className="transaction-description">
+                  {transaction.description}
+                </span>
+                <span className="transaction-time"> {transaction.time} </span>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
