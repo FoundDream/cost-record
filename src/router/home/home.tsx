@@ -4,6 +4,7 @@ import "./home.less";
 import { useEffect, useState } from "react";
 import { getBillsInfo } from "../../api";
 import { bill } from "../../api/getBillsInfo";
+import SpendFrequency from "../../components/SpendFrequency";
 
 function Home() {
   const [bills, setBills] = useState<bill[]>([]);
@@ -19,6 +20,7 @@ function Home() {
     <div className="home">
       <div className="content">
         <BalanceCard bills={bills} />
+        <SpendFrequency />
         <ExpenseCard bills={bills} />
       </div>
     </div>
