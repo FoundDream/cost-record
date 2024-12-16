@@ -1,4 +1,5 @@
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import Logger from "./log";
 
 // 创建 axios 实例
 const axiosInstance = axios.create({
@@ -17,6 +18,7 @@ axiosInstance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `${token}`;
     }
+    Logger.log(`发起接口请求: ${config.url}`);
     return config;
   },
   (error) => {
@@ -28,14 +30,19 @@ axiosInstance.interceptors.request.use(
 // 响应拦截器
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
+    Logger.log(`接口请求成功: ${response.config.url}`, {
+      status: response.status,
+    });
     return response.data; // 只返回数据部分，简化调用
   },
   (error) => {
     // 处理错误
     if (error.response) {
-      console.error(`Error: ${error.response.status}`, error.response.data);
+      Logger.error(`接口请求出错，状态码: ${error.response.status}`, {
+        status: error.response.status,
+      });
     } else {
-      console.error("Network Error", error);
+      Logger.error("网络错误");
     }
     return Promise.reject(error);
   }

@@ -39,7 +39,7 @@ const ProfileSettings: React.FC = () => {
       <div className="profile-section">
         <div className="profile-image-wrapper">
           <img
-            src="https://gravatar.com/avatar/f656fc2a60e61ee1c1af65b89731ac9d?s=200&d=robohash&r=x"
+            src="https://avatar.iran.liara.run/public"
             alt="Profile"
             className="profile-image"
           />

@@ -1,30 +1,38 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Bell, ChevronDown, ArrowDown, ArrowUp } from "lucide-react";
 import "./index.less";
+import { bill } from "../../api/getBillsInfo";
 
-interface FinanceDashboardProps {
-  month?: string;
-  balance?: number;
-  income?: number;
-  expenses?: number;
-  avatarUrl?: string;
+interface BalanceCardProps {
+  bills: bill[];
 }
 
-const BalanceCard: React.FC<FinanceDashboardProps> = ({
-  month = "October",
-  balance = 9400,
-  income = 5000,
-  expenses = 1200,
-  avatarUrl = "https://gravatar.com/avatar/f656fc2a60e61ee1c1af65b89731ac9d?s=200&d=robohash&r=x",
-}) => {
+const BalanceCard: React.FC<BalanceCardProps> = ({ bills }) => {
+  const { income, expense } = useMemo(() => {
+    let totalIncome = 0;
+    let totalExpense = 0;
+    bills.forEach((bill) => {
+      if (bill.type === 1) {
+        totalIncome += bill.amount;
+      } else {
+        totalExpense += bill.amount;
+      }
+    });
+    return { income: totalIncome, expense: totalExpense };
+  }, [bills]);
+
   return (
     <div className="finance-dashboard">
       <div className="header">
         <div className="user-section">
-          <img src={avatarUrl} alt="User avatar" className="avatar" />
+          <img
+            src="https://avatar.iran.liara.run/public"
+            alt="User avatar"
+            className="avatar"
+          />
           <div className="month-selector">
             <ChevronDown size={20} />
-            <span>{month}</span>
+            <span>{"October"}</span>
           </div>
         </div>
         <Bell className="notification-icon" size={24} />
@@ -32,7 +40,7 @@ const BalanceCard: React.FC<FinanceDashboardProps> = ({
 
       <div className="balance-section">
         <span className="balance-label">Account Balance</span>
-        <h1 className="balance-amount">${balance}</h1>
+        <h1 className="balance-amount">${income - expense}</h1>
       </div>
 
       <div className="stats-container">
@@ -52,7 +60,7 @@ const BalanceCard: React.FC<FinanceDashboardProps> = ({
           </div>
           <div className="stat-info">
             <span className="stat-label">Expenses</span>
-            <span className="stat-amount">${expenses}</span>
+            <span className="stat-amount">${expense}</span>
           </div>
         </div>
       </div>

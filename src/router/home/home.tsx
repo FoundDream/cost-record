@@ -1,23 +1,25 @@
 import BalanceCard from "../../components/balanceCard";
 import ExpenseCard from "../../components/expenseCard";
 import "./home.less";
-import SpendFrequency from "../../components/SpendFrequency";
-import { useEffect } from "react";
-import { getRequest } from "../../utils/api";
+import { useEffect, useState } from "react";
+import { getBillsInfo } from "../../api";
+import { bill } from "../../api/getBillsInfo";
 
 function Home() {
+  const [bills, setBills] = useState<bill[]>([]);
+
   useEffect(() => {
-    getRequest("/api/v1/bills").then((res) => {
+    getBillsInfo().then((res) => {
       console.log(res);
+      setBills(res.data.bills);
     });
   }, []);
 
   return (
     <div className="home">
       <div className="content">
-        <BalanceCard />
-        <SpendFrequency />
-        <ExpenseCard />
+        <BalanceCard bills={bills} />
+        <ExpenseCard bills={bills} />
       </div>
     </div>
   );

@@ -2,24 +2,9 @@ import { useState } from "react";
 import "./register.less";
 import { postRequest } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
+import { register, login } from "../../api/index";
 
 export default function Register() {
-  interface LoginResponse {
-    user: {
-      username: string;
-      email: string;
-    };
-    token: string;
-  }
-
-  interface RegisterResponse {
-    user: {
-      username: string;
-      email: string;
-      id: number;
-    };
-  }
-
   // 注册状态
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -33,19 +18,11 @@ export default function Register() {
   // 注册提交处理
   const handleRegisterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { data } = await postRequest<RegisterResponse>(
-      "/api/v1/user/register",
-      {
-        username,
-        email,
-        password,
-      }
-    );
+    const { data } = await register({ username, email, password });
     setActiveTab("login");
     setUsername("");
     setEmail("");
     setPassword("");
-    console.log(data, "注册成功");
     const bill = await postRequest("/api/v1/bills", {
       name: "测试记账本",
       description: "测试",
@@ -59,10 +36,7 @@ export default function Register() {
   const handleLoginSubmit = async (e: React.FormEvent) => {
     try {
       e.preventDefault();
-      const { data } = await postRequest<LoginResponse>("/api/v1/user/login", {
-        username: loginUsername,
-        password: loginPassword,
-      });
+      const { data } = await login({ loginUsername, loginPassword });
       setLoginUsername("");
       setLoginPassword("");
       navigate("/");

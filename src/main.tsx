@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./assets/css/reset.less";
+import "./assets/css/font.less";
 import {
   createBrowserRouter,
   Navigate,
