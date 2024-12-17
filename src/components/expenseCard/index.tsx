@@ -12,7 +12,7 @@ const ExpenseCard: React.FC<ExpenseCardProps> = ({ bills }) => {
   return (
     <div className="recent-transactions">
       <div className="header">
-        <h3>Recent Transaction</h3> <button className="see-all">See All</button>
+        <h3>Recent Transaction</h3>
       </div>
       <div className="transactions-list">
         {bills.map((bill) => (
@@ -22,8 +22,14 @@ const ExpenseCard: React.FC<ExpenseCardProps> = ({ bills }) => {
             </div>
             <div className="transaction-info">
               <div className="transaction-main">
-                <span className="transaction-type">{bill.type}</span>
-                <span className="transaction-amount">${bill.amount}</span>
+                <span className="transaction-type">{bill.category}</span>
+                <span
+                  className={`transaction-amount ${
+                    bill.type === 0 ? "expense" : ""
+                  }`}
+                >
+                  {bill.type === 0 ? "-¥" + bill.amount : "+¥" + bill.amount}
+                </span>
               </div>
               <div className="transaction-details">
                 <span className="transaction-description">
