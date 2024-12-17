@@ -12,6 +12,7 @@ import Statistics from "./router/statistics/statistics.tsx";
 import Home from "./router/home/home.tsx";
 import User from "./router/user/user.tsx";
 import LoginRegister from "./router/register/register.tsx";
+import Add from "./router/add/add.tsx";
 
 const router = createBrowserRouter([
   {
@@ -34,11 +35,16 @@ const router = createBrowserRouter([
         path: "/user",
         element: <User />,
       },
+      
     ],
   },
   {
     path: "/login",
     element: <LoginRegister />,
+  },
+  {
+    path: "/add",
+    element: <Add />,
   },
 ]);
 

@@ -1,0 +1,247 @@
+@base-border-radius: 32px;
+@base-padding: 20px;
+@base-color-gray: #666;
+@base-color-dark: #333;
+@base-color-white: white;
+@base-color-bg: #ff5b5b;
+@base-color-toggle-bg-off: #eee;
+@base-color-toggle-bg-on: #7c5dfa;
+@base-color-toggle-circle: white;
+
+
+// 费用页面样式
+.expense-page {
+    position: relative;
+    min-height: 100vh;
+    background: @base-color-bg;
+}
+
+// 费用页面头部样式
+.expense-header {
+    padding: @base-padding;
+    display: flex;
+    align-items: center;
+    color: @base-color-white;
+
+    // 后退按钮样式
+    .back-button {
+        background: none;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+        color: @base-color-white;
+    }
+
+    .back-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    // 头部标题样式
+    .header-title {
+        margin-left: 16px;
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+
+// 金额展示区域样式
+.amount-section {
+    padding: @base-padding;
+    color: @base-color-white;
+    padding-bottom: 40px;
+
+    // 金额标签样式
+    .amount-label {
+        font-size: 18px;
+        margin-bottom: 16px;
+        font-weight: normal;
+    }
+
+    // 金额展示样式（内部元素样式）
+    .amount-display {
+        display: flex;
+        align-items: baseline;
+    }
+
+    .currency {
+        font-size: 32px;
+        margin-right: 4px;
+    }
+
+    .amount {
+        font-size: 48px;
+        font-weight: bold;
+    }
+}
+
+// 表单区域样式
+.form-section {
+    padding: @base-padding;
+    background: @base-color-white;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    // 输入组通用样式
+    .input-group {
+        margin-bottom: 16px;
+    }
+
+    // 选择按钮样式
+    .select-button {
+        width: 100%;
+        padding: 16px;
+        background: @base-color-white;
+        border: 1px solid #eee;
+        border-radius: @base-border-radius;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+
+        // 选择按钮内标签样式
+        .select-label {
+            color: @base-color-gray;
+            font-size: 16px;
+        }
+
+        // 选择按钮内图标样式
+        .select-icon {
+            width: 20px;
+            height: 20px;
+            color: @base-color-gray;
+        }
+    }
+
+    // 文本输入框样式
+    .text-input {
+        width: 100%;
+        padding: 16px;
+        border: 1px solid #eee;
+        border-radius: @base-border-radius;
+        font-size: 16px;
+
+        &::placeholder {
+            color: @base-color-gray;
+        }
+    }
+
+    // 附件按钮样式
+    .attachment-button {
+        width: 100%;
+        padding: 16px;
+        background: @base-color-white;
+        border: 1px solid #eee;
+        border-radius: @base-border-radius;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 16px;
+
+        // 附件按钮内图标样式
+        .attachment-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            color: @base-color-gray;
+        }
+
+        // 附件按钮内标签样式
+        .attachment-label {
+            color: @base-color-gray;
+            font-size: 16px;
+        }
+    }
+
+    // 重复设置区域样式
+    .repeat-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+
+        // 重复设置标签样式（内部元素样式）
+        .repeat-label {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .repeat-title {
+            font-size: 16px;
+            color: @base-color-dark;
+            margin-bottom: 4px;
+        }
+
+        .repeat-subtitle {
+            font-size: 14px;
+            color: @base-color-gray;
+        }
+    }
+
+    // 切换按钮样式（整体及内部元素样式）
+    .toggle {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 28px;
+
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: @base-color-toggle-bg-off;
+            border-radius: 34px;
+            transition: .4s;
+
+            &:before {
+                position: absolute;
+                content: "";
+                height: 20px;
+                width: 20px;
+                left: 4px;
+                bottom: 4px;
+                background-color: @base-color-toggle-circle;
+                border-radius: 50%;
+                transition: .4s;
+            }
+        }
+
+        input:checked+.toggle-slider {
+            background-color: @base-color-toggle-bg-on;
+        }
+
+        input:checked+.toggle-slider:before {
+            transform: translateX(22px);
+        }
+    }
+
+    // 继续按钮样式
+    .continue-button {
+        width: 100%;
+        padding: 16px;
+        background: @base-color-toggle-bg-on;
+        border: none;
+        border-radius: @base-border-radius;
+        color: @base-color-white;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background: #6c4ae9;
+        }
+    }
+}

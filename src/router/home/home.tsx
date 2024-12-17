@@ -20,7 +20,7 @@ function Home() {
     <div className="home">
       <div className="content">
         <BalanceCard bills={bills} />
-        <SpendFrequency />
+        <SpendFrequency bills={bills} />
         <ExpenseCard bills={bills} />
       </div>
     </div>

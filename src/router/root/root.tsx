@@ -2,7 +2,7 @@ import { TabBar } from "antd-mobile";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./root.less";
 import { GoHome, GoHomeFill } from "react-icons/go";
-import { IoPieChartOutline, IoPieChartSharp } from "react-icons/io5";
+import { IoAddOutline, IoPieChartOutline, IoPieChartSharp } from "react-icons/io5";
 import { RiUser4Fill, RiUser4Line } from "react-icons/ri";
 import { useEffect, useState } from "react";
 
@@ -34,6 +34,11 @@ const Root = () => {
       title: "我的",
       icon: (active: boolean) => (active ? <RiUser4Fill /> : <RiUser4Line />),
     },
+    {
+      key: "add",
+      title: "添加",
+      icon: <IoAddOutline />,
+    }
   ];
 
   return (
@@ -44,7 +49,7 @@ const Root = () => {
           activeKey={activeKey}
         >
           {tabs.map((item) => (
-            <TabBar.Item icon={item.icon} key={item.key} />
+            <TabBar.Item icon={item.icon} key={item.key} className={item.key === 'add' ? 'add' : ''}/>
           ))}
         </TabBar>
       </div>

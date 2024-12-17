@@ -6,12 +6,13 @@ export interface bill {
   type: 0 | 1;
   category: string;
   description?: string;
-  date: Date;
+  date: string;
   icon: string;
   createdBy: string;
 }
 interface ResponseBillsInfo {
   bills: [bill];
+  billId: string;
 }
 
 export const getBillsInfo = () => {

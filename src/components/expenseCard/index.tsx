@@ -2,6 +2,7 @@ import React from "react";
 import { ShoppingBag } from "lucide-react";
 import "./index.less";
 import { bill } from "../../api/getBillsInfo";
+import dayjs from "dayjs";
 
 interface ExpenseCardProps {
   bills: bill[];
@@ -28,7 +29,9 @@ const ExpenseCard: React.FC<ExpenseCardProps> = ({ bills }) => {
                 <span className="transaction-description">
                   {bill.description}
                 </span>
-                <span className="transaction-time"> {bill.date.toString()} </span>
+                <span className="transaction-time">
+                  {dayjs(bill.date).format("YYYY/MM/DD")}
+                </span>
               </div>
             </div>
           </div>
