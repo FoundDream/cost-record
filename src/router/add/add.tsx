@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from "react";
-import "./add.less";
-import { useNavigate } from "react-router-dom";
-import { addBill, getBillsInfo } from "../../api";
+import React, { useEffect, useState } from 'react'
+import './add.less'
+import { useNavigate } from 'react-router-dom'
+import { addBill, getBillsInfo } from '../../api'
 
 const Add: React.FC = () => {
-  const [billId, setBillId] = useState<string>("");
-  const [amount, setAmount] = useState<number>(0);
-  const [isRepeat, setIsRepeat] = useState<boolean>(false);
-  const [type, setType] = useState<number>(0);
-  const [category] = useState<string>("Food");
-  const [description, setDescription] = useState<string>("");
+  const [billsId, setBillId] = useState<string>('')
+  const [amount, setAmount] = useState<number>(0)
+  const [isRepeat, setIsRepeat] = useState<boolean>(false)
+  const [type, setType] = useState<number>(0)
+  const [category] = useState<string>('Food')
+  const [description, setDescription] = useState<string>('')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const handleBackClick = () => {
-    navigate("/home");
-    console.log("back");
-  };
+    navigate('/home')
+    console.log('back')
+  }
 
   useEffect(() => {
     getBillsInfo().then((res) => {
-      console.log(res);
-      setBillId(res.data.billId);
-    });
-  }, []);
+      console.log(res)
+      setBillId(res.data.billsId)
+    })
+  }, [])
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newAmount = Number(e.target.value);
-    setAmount(newAmount);
-  };
+    const newAmount = Number(e.target.value)
+    setAmount(newAmount)
+  }
 
   const handleTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newType = Number(e.target.value);
-    setType(newType);
-  };
+    const newType = Number(e.target.value)
+    setType(newType)
+  }
 
   // const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   const newCategory = e.target.value;
@@ -40,21 +40,21 @@ const Add: React.FC = () => {
   // };
 
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newDescription = e.target.value;
-    setDescription(newDescription);
-  };
+    const newDescription = e.target.value
+    setDescription(newDescription)
+  }
 
   const handleSubmit = () => {
     addBill({
-      billId,
+      billsId,
       amount,
       type,
       category,
       description,
     }).then((res) => {
-      console.log(res);
-    });
-  };
+      console.log(res)
+    })
+  }
 
   return (
     <div className="expense-page">
@@ -104,31 +104,15 @@ const Add: React.FC = () => {
         </div>
 
         <div className="input-group">
-          <input
-            type="text"
-            className="text-input"
-            placeholder="Description"
-            onChange={handleDescriptionChange}
-          />
+          <input type="text" className="text-input" placeholder="Description" onChange={handleDescriptionChange} />
         </div>
 
         <div className="input-group">
-          <input
-            type="number"
-            className="text-input"
-            placeholder="Amount"
-            onChange={handleAmountChange}
-          />
+          <input type="number" className="text-input" placeholder="Amount" onChange={handleAmountChange} />
         </div>
 
         <div className="input-group">
-          <input
-            type="number"
-            className="text-input"
-            placeholder="Type"
-            pattern="[01]*"
-            onChange={handleTypeChange}
-          />
+          <input type="number" className="text-input" placeholder="Type" pattern="[01]*" onChange={handleTypeChange} />
         </div>
 
         <div className="repeat-section">
@@ -137,11 +121,7 @@ const Add: React.FC = () => {
             <span className="repeat-subtitle">Repeat transaction</span>
           </div>
           <label className="toggle">
-            <input
-              type="checkbox"
-              checked={isRepeat}
-              onChange={() => setIsRepeat(!isRepeat)}
-            />
+            <input type="checkbox" checked={isRepeat} onChange={() => setIsRepeat(!isRepeat)} />
             <span className="toggle-slider"></span>
           </label>
         </div>
@@ -151,7 +131,7 @@ const Add: React.FC = () => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Add;
+export default Add

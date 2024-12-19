@@ -1,0 +1,120 @@
+.expense-donut {
+    background: white;
+    padding: 20px;
+    border-radius: 0 0 16px 16px;
+    width: 100%;
+    background: linear-gradient(182.31deg, rgba(255, 246, 229, 1) 0%, rgba(248, 237, 216, 0) 98.91%);
+
+    .user-section {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+  
+        .avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 1px solid #ef4444;
+        }
+  
+        .month-selector {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 16px;
+          color: #222325;
+          cursor: pointer;
+  
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+  }
+ 
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;   
+  }
+  
+  .month-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .chevron-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .header-icons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .icon-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #fff;
+  }
+  
+  .icon-button.chart {
+    background: #8A2BE2;
+    color: white;
+  }
+  
+  .share-icon,
+  .chart-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .donut-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+  
+  .donut {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  
+  .donut-segment {
+    transition: stroke-dashoffset 0.5s ease-out;
+  }
+  
+  .donut-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .amount {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  

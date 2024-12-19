@@ -1,0 +1,167 @@
+@red-background: #ff4757;
+@white: #fff;
+@light-gray: #f8f9fa;
+@dark-gray: #212529;
+@medium-gray: #6c757d;
+@purple: #7c5dfa;
+@purple-hover: #6c4ae9;
+
+.transaction-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ff4757;
+
+  .amount-section {
+    padding: 20px;
+    padding-bottom: 100px;
+    text-align: center;
+    color: @white;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    z-index: 10;
+    background-color: #ff4757;
+
+    .amount {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #fff
+    }
+
+    .transaction-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .transaction-date {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+  }
+}
+
+.transaction-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: @white;
+  background-color: #ff4757;
+
+  .header-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: @white;
+
+    .header-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .header-title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+.transaction-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  .details-container {
+    flex: 1;
+    background: @white;
+    margin-top: -20px;
+    padding: 20px;
+    padding-bottom: 80px;
+    position: relative;
+
+    .info-section {
+      background: @white;
+      border-radius: 16px;
+      padding: 20px;
+      position: absolute;
+      z-index: 100;
+      top: -10px;
+      bottom: 0;
+      left: 20px;
+      right: 20px;
+      height: 70px;
+      border: 1px #f1f1fa solid;
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+
+        .info-col {
+          flex: 1;
+          text-align: center;
+
+          .info-label {
+            color: @medium-gray;
+            font-size: 14px;
+            margin-bottom: 8px;
+          }
+
+          .info-value {
+            color: @dark-gray;
+            font-size: 16px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .description-section,
+    .attachment-section {
+      margin-top: 68px;
+
+      margin-bottom: 24px;
+
+      .section-title {
+        color: @medium-gray;
+        font-size: 16px;
+        font-weight: normal;
+        margin-bottom: 12px;
+      }
+    }
+
+    .description-text {
+      color: @dark-gray;
+      line-height: 1.6;
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+}
+
+.edit-button-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 24px;
+  background: @white;
+
+  .edit-button {
+    width: 100%;
+    background: @purple;
+    color: @white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: @purple-hover;
+    }
+  }
+}
